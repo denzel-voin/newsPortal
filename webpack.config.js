@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: './bundle.js',
   },
   module: {
     rules: [
@@ -42,6 +42,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      inject: 'body',
     }),
     new CopyWebpackPlugin({
       patterns: [
