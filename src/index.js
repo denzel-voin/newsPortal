@@ -26,9 +26,15 @@ class NewsApp {
   }
 
   init() {
-    const category = document.querySelector('#categoryFilter');
-    this.fetchNews(category.value);
-    category.addEventListener('change', () => this.fetchNews(category.value));
+    const tabs = document.querySelectorAll('.category-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (event) => {
+        const category = event.target.getAttribute('data-category');
+        this.fetchNews(category === 'all' ? '' : category);
+      });
+    });
+
+    this.fetchNews();
   }
 }
 
@@ -52,11 +58,11 @@ class NewsItem {
 
     const image = document.createElement('img');
     image.className = 'image'
-    image.src = this.src;
+    image.src = this.src ? this.src : '';
 
     const description = document.createElement('p');
     description.className = 'news-description';
-    description.textContent = this.description ? this.description : 'Описание отсутствует';
+    description.textContent = this.description ? this.description : '';
 
     article.append(artHeader);
     article.append(image);
@@ -68,4 +74,4 @@ class NewsItem {
 
 const news = new NewsApp();
 
-// news.init()
+news.init()
