@@ -28,7 +28,7 @@ class NewsApp {
     tabs.forEach((tab) => {
       tab.addEventListener('click', (event) => {
         const category = event.target.getAttribute('data-category');
-        this.fetchNews(category === 'all' ? 'entertainment' : category);
+        this.fetchNews(category === undefined ? '' : category);
       });
     });
 
